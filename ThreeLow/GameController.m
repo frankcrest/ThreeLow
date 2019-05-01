@@ -105,4 +105,12 @@
     }
 }
 
+-(NSInteger)calculateScore{
+    NSInteger totalScore = 0;
+    for (Dice* dice in _dices) {
+        totalScore += dice.currentValue;
+    }
+    return totalScore;
+}
+
 @end

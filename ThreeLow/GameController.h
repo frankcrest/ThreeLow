@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)resetDice;
 
 -(void)reroll;
+
+-(NSInteger)calculateScore;
+
 @end
 
 NS_ASSUME_NONNULL_END

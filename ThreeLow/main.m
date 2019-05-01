@@ -34,7 +34,8 @@ int main(int argc, const char * argv[]) {
         gameController.dices = [NSMutableArray arrayWithObjects:dice1,dice2,dice3,dice4,dice5, nil];
         gameController.dicesHeld = [[NSMutableArray alloc]init];
         
-        while(YES){
+        BOOL gameFinished = NO;
+        while(!gameFinished){
             NSLog(@"Please enter hold/roll to hold or roll dices:");
             char userInput[255];
             fgets(userInput, 255, stdin);
@@ -56,6 +57,28 @@ int main(int argc, const char * argv[]) {
                 for (Dice* dice in gameController.dices) {
                     NSLog(@"%@", dice.description);
                 }
+                
+                gameFinished = [gameController.dices[0] held] && [gameController.dices[1]held] && [gameController.dices[2]held] && [gameController.dices[3]held] && [gameController.dices[4]held];
+                
+//                //another way is to use a counter instead of boolean
+//                BOOL isGameOver = YES;
+//                for (Dice* dice in gameController.dices) {
+//                    Dice* lastDice = gameController.dices[4];
+//                    //if we are not holding the dice the game shold continue
+//                    if (dice.held == YES && lastDice.held == YES ) {
+//                        isGameOver = YES;
+//                    }else{
+//                        break;
+//                    }
+//                }
+//                //if game is over
+//                
+//                if (isGameOver == YES) {
+//                    gameFinished = YES;
+//                } else{
+//                    gameFinished = NO;
+//                }
+                
             }else if ([userInputStringWithoutNewLine isEqualToString:@"reset"]){
                 [gameController resetDice];
                 for (Dice* dice in gameController.dices) {
@@ -64,6 +87,7 @@ int main(int argc, const char * argv[]) {
             }
             
         }
+        NSLog(@"Your score is : %ld", gameController.calculateScore);
     }
     return 0;
 }
